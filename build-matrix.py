@@ -13,8 +13,8 @@ def build_matrix() -> dict:
             "tags": tags
         })
     final_matrix = {
-        "source": "",
-        "tags": [],
+        # "source": "",
+        # "tags": [],
         "include": include
     }
     return final_matrix
