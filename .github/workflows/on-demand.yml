@@ -14,9 +14,9 @@ on:
         description: 'New image name'
         required: true
       architectures:
-        description: 'Architectures to build for. Comma separated list'
+        description: 'Architectures to build for. Space separated list.'
         required: true
-        default: 'linux/amd64,linux/arm64'
+        default: 'linux/amd64 linux/arm64'
 
 
 jobs:
