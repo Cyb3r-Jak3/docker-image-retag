@@ -29,6 +29,6 @@ if __name__ == '__main__':
     output = build_matrix()
     if os.environ.get('GITHUB_OUTPUT'):
         with open(os.environ.get('GITHUB_OUTPUT'), 'a') as f:
-            print(f'matrix={json.dumps(output)}')
+            print(f'matrix={json.dumps(output)}', file=f)
     else:
         print(json.dumps(output))
