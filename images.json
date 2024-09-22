@@ -1,0 +1,9 @@
+{
+    "terraform-docs": {
+        "source": "quay.io/terraform-docs/terraform-docs",
+        "tags": [
+            "0.18.0",
+            "0.19.0"
+        ]
+    }
+}
