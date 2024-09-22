@@ -29,7 +29,9 @@ jobs:
       runs-on: ubuntu-latest
       needs: matrix
       strategy:
-        ${{ insert }}: ${{ fromJson(needs.matrix.outputs.built_matrix) }}
+        matrix:
+          ${{ insert }}: ${{ fromJson(needs.matrix.outputs.built_matrix) }}
+
       steps:
         - name: Docker login
           uses: docker/login-action@v3
@@ -41,4 +43,5 @@ jobs:
         - name: Retag image
           run: |
             image=${{ matrix.source}}:${{ matrix.tag }}
+            echo "Retagging $image"
 
