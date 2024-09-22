@@ -14,7 +14,7 @@ def build_matrix() -> dict:
                 "source": matrix[source]['source'],
                 "tag": tag,
                 "name": matrix[source],
-                "architectures": matrix[source].get('architectures', DEFAULT_ARCHITECTURES)
+                "architectures": ",".join(matrix[source].get('architectures', DEFAULT_ARCHITECTURES))
             })
     return {"include": include}
 
