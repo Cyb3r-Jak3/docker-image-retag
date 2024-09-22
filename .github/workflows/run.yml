@@ -21,7 +21,7 @@ jobs:
 
       - name: Load Matrix
         id: set-matrix
-        run: python3 build_matrix.py
+        run: python3 build-matrix.py
           
 
   retag:
