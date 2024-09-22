@@ -22,10 +22,9 @@ jobs:
       - name: Load Matrix
         id: set-matrix
         run: python3 build-matrix.py
-          
 
   retag:
-      name: Retag images
+      name: Retag image
       runs-on: ubuntu-latest
       needs: matrix
       strategy:
@@ -42,9 +41,9 @@ jobs:
 
         - name: Retag image
           run: |
-            echo "Retagging $image"
+            echo "Retagging ${{ matrix.source }}:${{ matrix.tag }} to mine.jfrog.cyberjake.xyz/${{ matrix.name }}:${{ matrix.tag }}"
             image=${{ matrix.source }}:${{ matrix.tag }}
-            new_image=mine.jfrog${{ matrix.name }}:${{ matrix.tag }}
+            new_image=mine.jfrog.cyberjake.xyz/${{ matrix.name }}:${{ matrix.tag }}
             for platform in ${{ matrix.architectures }}; do
               docker pull $image --platform $platform
               docker tag $image $new_image
