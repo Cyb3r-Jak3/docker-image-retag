@@ -6,15 +6,17 @@ DEFAULT_ARCHITECTURES = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/ar
 
 def build_matrix() -> dict:
     with open('images.json') as f:
-        matrix = json.load(f)
+        matrix: dict = json.load(f)
     include = []
-    for source in matrix:
-        for tag in matrix[source]['tags']:
+    for name, info in matrix.items():
+        print(f'Processing {name}')
+        print(f'Info: {info}')
+        for tag in info['tags']:
             include.append({
-                "source": matrix[source]['source'],
+                "source": info['source'],
                 "tag": tag,
-                "name": matrix[source],
-                "architectures": ",".join(matrix[source].get('architectures', DEFAULT_ARCHITECTURES))
+                "name": name,
+                "architectures": " ".join(info.get('architectures', DEFAULT_ARCHITECTURES))
             })
     return {"include": include}
 
