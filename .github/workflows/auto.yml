@@ -28,6 +28,7 @@ jobs:
       runs-on: ubuntu-latest
       needs: matrix
       strategy:
+        fail-fast: false
         matrix:
           ${{ insert }}: ${{ fromJson(needs.matrix.outputs.built_matrix) }}
 
