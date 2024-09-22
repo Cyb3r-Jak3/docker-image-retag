@@ -16,7 +16,7 @@ def build_matrix() -> dict:
                 "source": info['source'],
                 "tag": tag,
                 "name": name,
-                "architectures": " ".join(info.get('architectures', DEFAULT_ARCHITECTURES))
+                "architectures": " ".join(info.get('arch', DEFAULT_ARCHITECTURES))
             })
     return {"include": include}
 
