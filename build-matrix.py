@@ -1,23 +1,22 @@
 import json
 import os
 
+DEFAULT_ARCHITECTURES = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
+
 
 def build_matrix() -> dict:
     with open('images.json') as f:
         matrix = json.load(f)
     include = []
     for source in matrix:
-        tags = matrix[source]['tags']
-        include.append({
-            "source": source,
-            "tags": tags
-        })
-    final_matrix = {
-        # "source": "",
-        # "tags": [],
-        "include": include
-    }
-    return final_matrix
+        for tag in matrix[source]['tags']:
+            include.append({
+                "source": matrix[source]['source'],
+                "tag": tag,
+                "name": matrix[source],
+                "architectures": matrix[source].get('architectures', DEFAULT_ARCHITECTURES)
+            })
+    return {"include": include}
 
 
 # Output needed

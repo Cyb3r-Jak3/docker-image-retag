@@ -42,6 +42,13 @@ jobs:
 
         - name: Retag image
           run: |
-            image=${{ matrix.source}}:${{ matrix.tag }}
             echo "Retagging $image"
+            image=${{ matrix.source }}:${{ matrix.tag }}
+            new_image=mine.jfrog${{ matrix.name }}:${{ matrix.tag }}
+            for platform in ${{ matrix.architectures }}; do
+              docker pull $image --platform $platform
+              docker tag $image $new_image
+              docker push $new_image
+            done
+            
 
