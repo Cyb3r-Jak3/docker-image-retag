@@ -3,7 +3,8 @@
         "source": "quay.io/terraform-docs/terraform-docs",
         "tags": [
             "0.18.0",
-            "0.19.0"
+            "0.19.0",
+            "latest"
         ],
         "arch": ["linux/amd64"]
     },
@@ -11,7 +12,8 @@
         "source": "quay.io/prometheus/node-exporter",
         "tags": [
             "v1.8.2",
-            "1.8.1"
+            "v1.8.1",
+            "latest"
         ],
         "arch": ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/ppc64le", "linux/s390x"]
     }
