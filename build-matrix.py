@@ -1,7 +1,12 @@
 import json
 import os
 
-DEFAULT_ARCHITECTURES = ["linux/amd64", "linux/arm64", "linux/arm/v7", "linux/arm/v6"]
+DEFAULT_ARCHITECTURES = [
+    "linux/amd64",
+    "linux/arm64",
+    "linux/arm/v7",
+    "linux/arm/v6"
+]
 
 
 def build_matrix() -> dict:
@@ -16,7 +21,9 @@ def build_matrix() -> dict:
                 "source": info['source'],
                 "tag": tag,
                 "name": name,
-                "architectures": " ".join(info.get('arch', DEFAULT_ARCHITECTURES))
+                "architectures": " ".join(
+                    info.get('arch', DEFAULT_ARCHITECTURES)
+                    )
             })
     return {"include": include}
 
