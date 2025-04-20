@@ -22,26 +22,27 @@ on:
 jobs:
 
   retag:
-      name: Retag image
-      runs-on: ubuntu-latest
+    name: Retag image
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY: cf-registry.cyberjake.xyz
+    steps:
+      - name: Docker login
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
 
-      steps:
-        - name: Docker login
-          uses: docker/login-action@v3
-          with:
-            registry: "mine.jfrog.cyberjake.xyz"
-            username: ${{ secrets.DOCKER_USERNAME }}
-            password: ${{ secrets.DOCKER_PASSWORD }}
-
-        - name: Retag image
-          run: |
-            echo "Retagging ${{ github.event.inputs.source }}:${{ github.event.inputs.tag }} to mine.jfrog.cyberjake.xyz/${{ github.event.inputs.name }}:${{ github.event.inputs.tag }}"
-            image=${{ github.event.inputs.source }}:${{ github.event.inputs.tag }}
-            new_image=mine.jfrog.cyberjake.xyz/${{ github.event.inputs.name }}:${{ github.event.inputs.tag }}
-            for platform in ${{ github.event.inputs.architectures }}; do
-              docker pull $image --platform $platform
-              docker tag $image $new_image
-              docker push $new_image
-            done
+      - name: Retag image
+        run: |
+          echo "Retagging ${{ github.event.inputs.source }}:${{ github.event.inputs.tag }} to ${{ env.REGISTRY }}/${{ github.event.inputs.name }}:${{ github.event.inputs.tag }}"
+          image=${{ github.event.inputs.source }}:${{ github.event.inputs.tag }}
+          new_image=${{ env.REGISTRY }}/${{ github.event.inputs.name }}:${{ github.event.inputs.tag }}
+          for platform in ${{ github.event.inputs.architectures }}; do
+            docker pull $image --platform $platform
+            docker tag $image $new_image
+            docker push $new_image
+          done
             
 
