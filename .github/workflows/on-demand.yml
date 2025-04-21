@@ -23,7 +23,7 @@ jobs:
 
   retag:
     name: Retag image
-    runs-on: ubuntu-latest
+    runs-on: cyb3r-jak3-docker-image-retag
     env:
       REGISTRY: cf-registry.cyberjake.xyz
     steps:

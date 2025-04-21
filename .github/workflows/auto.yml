@@ -12,7 +12,7 @@ on:
 
 jobs:
   matrix:
-    runs-on: ubuntu-latest
+    runs-on: cyb3r-jak3-docker-image-retag
     outputs:
       built_matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:  
